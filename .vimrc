@@ -36,6 +36,7 @@ Plugin 'L9'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
 " python 跳转和补全
+Plugin 'ervandew/supertab'
 Plugin 'davidhalter/jedi-vim'
 "Bundle 'Valloric/YouCompleteMe'
 " Plugin 'vim-erlang/vim-erlang-omnicomplete'
@@ -114,7 +115,7 @@ endif
 :nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " neocomplete auto start
-let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_at_startup = 1
 " 没有指定文件名时,自动打开nerdtree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -131,7 +132,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+let g:SuperTabDefaultCompletionType="<c-n>"
+let g:SuperTabContextDefaultCompletionType="<c-n>"
+" ale 语法检查erlang编译参数
 let g:ale_erlang_erlc_options="-I include -pa ebin/game "
+let g:ale_fix_on_save=1
+let g:ale_set_quickfix=1
+" ale 错误跳转
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 let g:ale_sign_column_always=1
 " 修改ale的sign形状
 let g:ale_sign_error='●'
@@ -142,5 +151,5 @@ highlight clear SignColumn
 "highlight clear Warning
 " 改变error 和warning的前景色
 " use :hi to see all highlight
-highlight ALEErrorSign ctermfg=Red
-highlight ALEWarningSign ctermfg=Yellow
+highlight ALEErrorSign ctermfg=Red ctermbg=Yellow
+highlight ALEWarningSign ctermfg=Yellow ctermbg=White
