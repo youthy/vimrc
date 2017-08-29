@@ -95,17 +95,17 @@ language message zh_CN.UTF-8
 
 colorscheme peachpuff
 
+" ale 错误跳转
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " 复制进系统剪切板
 vnoremap <C-c> "+y
 " 从系统剪切板拷贝
 nnoremap cp "+p
-" ale 错误跳转
-nnoremap <silent> <C-j> <Plug>(ale_next_wrap)
-nnoremap <silent> <C-k> <Plug>(ale_previous_wrap)
-" 执行:FZF 不排序 因为目前不支持排除路径,用no-sort将beam排在上面
+" 执行:FZF 不排序 因为目前不支持排除路径
 nnoremap <C-p> :FZF<cr>
 " \ev打开.vimrc
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " use :hi to see all highlight
 " 清除sign column 背景
