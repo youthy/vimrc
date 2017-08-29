@@ -102,7 +102,7 @@ nnoremap cp "+p
 " ale 错误跳转
 nnoremap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <silent> <C-k> <Plug>(ale_previous_wrap)
-" 执行:FZF
+" 执行:FZF 不排序 因为目前不支持排除路径,用no-sort将beam排在上面
 nnoremap <C-p> :FZF<cr>
 " \ev打开.vimrc
 :nnoremap <leader>ev :vsplit $MYVIMRC<cr>
