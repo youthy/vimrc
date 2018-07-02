@@ -26,7 +26,7 @@ Plug 'oscarh/vimerl'
 "Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/bufexplorer.zip'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/cscope.vim' 
+"Plug 'vim-scripts/cscope.vim' 
 Plug 'plasticboy/vim-markdown'
 Plug 'hcs42/vim-erlang-tags'
 Plug 'rkulla/pydiction'
@@ -49,6 +49,7 @@ Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go'
 " 替换ctrlp
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'rizzatti/dash.vim'
 
 call plug#end()
 " scripts from http://vim-scripts.org/vim/scripts.html
@@ -85,6 +86,8 @@ set termencoding=utf-8
 set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 set wildignore=*.o,*~,*.pyc,*.beam
+" macvim font setting
+set guifont=Monaco:h18
 if has("win16") || has("win32")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
@@ -92,8 +95,10 @@ else
 endif
 
 language message zh_CN.UTF-8
+" allow backspacing over everything in insert mode in mac
+set backspace=indent,eol,start
 
-colorscheme peachpuff
+colorscheme desert
 
 " ale 错误跳转
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -106,6 +111,7 @@ nnoremap cp "+p
 nnoremap <C-p> :FZF<cr>
 " \ev打开.vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nmap <silent> <leader>d <Plug>DashSearch
 
 " use :hi to see all highlight
 " 清除sign column 背景
@@ -123,6 +129,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
 au BufRead,BufNewFile *.eex set filetype=eelixir
+"if has("clipboard")
+"  set clipboard=unnamed " copy to the system clipboard
+"
+"  if has("unnamedplus") " X11 support
+"    set clipboard+=unnamedplus
+"  endif
+"endif
 
 " jedi跳转
 let g:jedi#goto_command = "<C-]>"
@@ -154,3 +167,4 @@ let g:ale_sign_column_always=1
 " 修改ale的sign形状
 let g:ale_sign_error='●'
 let g:ale_sign_warning='●'
+let g:ale_lint_on_text_changed='never'
