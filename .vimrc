@@ -50,6 +50,7 @@ Plug 'fatih/vim-go'
 " 替换ctrlp
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'rizzatti/dash.vim'
+Plug 'mhinz/vim-grepper'
 
 call plug#end()
 " scripts from http://vim-scripts.org/vim/scripts.html
@@ -167,4 +168,8 @@ let g:ale_sign_column_always=1
 " 修改ale的sign形状
 let g:ale_sign_error='●'
 let g:ale_sign_warning='●'
+" ale只在保存时运行检测
 let g:ale_lint_on_text_changed='never'
+
+nnoremap <leader>g :Grepper<cr>
+let g:grepper = { 'next_tool': '<leader>g','highlight': 1}
